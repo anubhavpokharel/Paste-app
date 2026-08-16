@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
@@ -6,6 +7,27 @@ const Home = () => {
   const [value, setValue] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const pasteId = searchParams.get("pasteId");
+
+  const dispatch = useDispatch();
+
+  function crestePaste() {
+    const paste = {
+      title: title,
+      content: value,
+      _id: pasteId || Date.now().toString(36),
+      createdAt: new Date().toISOString(),
+
+    }
+
+    if (pasteId){
+      //update
+      dispatch();
+    }
+    else{
+      //create
+      dispatch();
+    }
+  }
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
