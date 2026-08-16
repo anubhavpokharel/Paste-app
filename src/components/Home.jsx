@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
-  const [title, setTitle] = useState('');
-  const [value, setValue] = useState('');
+  const [title, setTitle] = useState("");
+  const [value, setValue] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const pasteId = searchParams.get("pasteId");
 
@@ -16,14 +16,12 @@ const Home = () => {
       content: value,
       _id: pasteId || Date.now().toString(36),
       createdAt: new Date().toISOString(),
+    };
 
-    }
-
-    if (pasteId){
+    if (pasteId) {
       //update
       dispatch();
-    }
-    else{
+    } else {
       //create
       dispatch();
     }
@@ -41,17 +39,20 @@ const Home = () => {
         />
 
         <button
+          onClick={crestePaste}
           className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors duration-200 whitespace-nowrap"
         >
           {pasteId ? "Update My Paste" : "Create My Paste"}
         </button>
       </div>
-      <div>
+
+      <div className="mt-4">
         <textarea
-            value={value}
-            placeholder="Enter Content Here"
-            onChange={(e) => setValue(e.target.value)}
-            rows={20}
+          value={value}
+          placeholder="Enter Content Here"
+          onChange={(e) => setValue(e.target.value)}
+          rows={20}
+          className="w-full px-4 py-3 border border-gray-300 rounded-md text-sm font-mono leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y"
         />
       </div>
     </div>
